@@ -70,11 +70,12 @@ public interface TStudentAttendanceMapper {
 	 * 
 	 * @param lmsUserId
 	 * @param deleteFlg
-	 * @param trainingDate
+	 * @param currentDate
 	 * @return 未入力件数
 	 */
-	int notEnterCount(@Param("lmsUserId") Integer lmsUserId,
+	int notEnterCount(
+			@Param("lmsUserId") Integer lmsUserId,
 			@Param("deleteFlg") Short deleteFlg,
-			@Param("trainingDate") String trainingDate);
+			@Param("trainingDate") String currentDate);
 
 }

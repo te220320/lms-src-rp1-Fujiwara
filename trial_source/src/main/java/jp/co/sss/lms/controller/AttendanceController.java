@@ -50,6 +50,10 @@ public class AttendanceController {
 		boolean isNotEntered = studentAttendanceService.notEnterCheck();
 		model.addAttribute("isNotEntered",isNotEntered);
 		
+		//初期表示未入力チェック
+		boolean NotEntered = studentAttendanceService.notEnterCheck();
+		model.addAttribute("NotEntered", NotEntered);
+		
 		return "attendance/detail";
 	}
 
@@ -144,7 +148,9 @@ public class AttendanceController {
 				.getAttendanceManagement(loginUserDto.getCourseId(), loginUserDto.getLmsUserId());
 		model.addAttribute("attendanceManagementDtoList", attendanceManagementDtoList);
 		
-		
+		// 未入力チェック
+		boolean NotEntered = studentAttendanceService.notEnterCheck();
+		model.addAttribute("NotEntered", NotEntered);
 
 		return "attendance/detail";
 	}
