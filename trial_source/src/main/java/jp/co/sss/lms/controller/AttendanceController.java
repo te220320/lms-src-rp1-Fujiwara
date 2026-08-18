@@ -47,12 +47,10 @@ public class AttendanceController {
 				.getAttendanceManagement(loginUserDto.getCourseId(), loginUserDto.getLmsUserId());
 		model.addAttribute("attendanceManagementDtoList", attendanceManagementDtoList);
 		
-		boolean isNotEntered = studentAttendanceService.notEnterCheck();
-		model.addAttribute("isNotEntered",isNotEntered);
-		
 		//初期表示未入力チェック
-		boolean NotEntered = studentAttendanceService.notEnterCheck();
-		model.addAttribute("NotEntered", NotEntered);
+		//藤原峻也 - Task.25
+		boolean isNotEntered = studentAttendanceService.notEnterCheck();
+		model.addAttribute("isNotEntered", isNotEntered);
 		
 		return "attendance/detail";
 	}
@@ -149,8 +147,9 @@ public class AttendanceController {
 		model.addAttribute("attendanceManagementDtoList", attendanceManagementDtoList);
 		
 		// 未入力チェック
-		boolean NotEntered = studentAttendanceService.notEnterCheck();
-		model.addAttribute("NotEntered", NotEntered);
+		//藤原峻也 - Task.25
+		boolean isNotEntered = studentAttendanceService.notEnterCheck();
+		model.addAttribute("isNotEntered", isNotEntered);
 
 		return "attendance/detail";
 	}

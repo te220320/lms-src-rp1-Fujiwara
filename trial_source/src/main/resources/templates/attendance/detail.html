@@ -79,8 +79,9 @@
 			setInterval(function() {
 				$("#now").text('現在の時刻は　' + getClock() + '　です。');
 			}, 1000);
-			var NotEntered = /*[[${NotEntered}]]*/ false;
-			if (NotEntered){
+			<!-- 藤原峻也 - Task.25 -->
+			var isNotEntered = /*[[${isNotEntered}]]*/ false;
+			if (isNotEntered){
 				alert("過去日の勤怠に未入力があります。");
 			}
 		});
