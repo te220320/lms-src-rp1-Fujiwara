@@ -95,18 +95,21 @@
 	</update>
 
 	<select id="notEnterCount" resultType="Integer">
-		select count(*)
-		from t_student_attendance
-		where lms_user_id = #{lmsUserId}
-		and delete_flg = #{deleteFlg}
-		and
-		cast(training_date as date) &lt; cast(#{trainingDate} as date)
-		and status != 1
-		and
-		(training_start_time=''
-		or training_end_time=''
-		or training_start_time is null
-		or training_end_time is null)
+		select
+			count(*)
+		from
+			t_student_attendance
+		where
+			lms_user_id = #{lmsUserId}
+			and delete_flg = #{deleteFlg}
+			and cast(training_date as date) &lt; cast(#{trainingDate} as date)
+			and status != 1
+			and (
+					training_start_time=''
+					or training_end_time=''
+					or training_start_time is null
+					or training_end_time is null
+				)
 	</select>
 
 </mapper>

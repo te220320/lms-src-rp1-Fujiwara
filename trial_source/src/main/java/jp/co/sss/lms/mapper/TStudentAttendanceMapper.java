@@ -68,6 +68,7 @@ public interface TStudentAttendanceMapper {
 	/**
 	 * 過去日の未入力件数取得
 	 * 
+	 * @author 藤原峻也
 	 * @param lmsUserId
 	 * @param deleteFlg
 	 * @param currentDate

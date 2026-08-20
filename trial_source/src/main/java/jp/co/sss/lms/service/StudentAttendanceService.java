@@ -16,7 +16,6 @@ import jp.co.sss.lms.entity.TStudentAttendance;
 import jp.co.sss.lms.enums.AttendanceStatusEnum;
 import jp.co.sss.lms.form.AttendanceForm;
 import jp.co.sss.lms.form.DailyAttendanceForm;
-import jp.co.sss.lms.mapper.MLmsUserMapper;
 import jp.co.sss.lms.mapper.TStudentAttendanceMapper;
 import jp.co.sss.lms.util.AttendanceUtil;
 import jp.co.sss.lms.util.Constants;
@@ -34,8 +33,6 @@ import jp.co.sss.lms.util.TrainingTime;
 public class StudentAttendanceService {
 
 	@Autowired
-	private TrainingTime trainingTime;
-	@Autowired
 	private DateUtil dateUtil;
 	@Autowired
 	private AttendanceUtil attendanceUtil;
@@ -46,22 +43,7 @@ public class StudentAttendanceService {
 	@Autowired
 	private LoginUserDto loginUserDto;
 	@Autowired
-	private MLmsUserMapper mLmsUserMapper;
-	/*@Autowired
-	private MPlaceMapper mPlaceMapper;
-	@Autowired
-	private TCompanyAttendanceMapper tCompanyAttendanceMapper;
-	@Autowired
-	private TUserPlaceMapper tUserPlaceMapper;*/
-	@Autowired
 	private TStudentAttendanceMapper tStudentAttendanceMapper;
-	//@Autowired
-	//private PlaceService placeService;
-	@Autowired
-	private CourseService courseService;
-	//@Autowired
-	//private CompanyService companyService;
-	
 
 	/**
 	 * 勤怠一覧情報取得
@@ -231,7 +213,6 @@ public class StudentAttendanceService {
 	 */
 	public AttendanceForm setAttendanceForm(
 			List<AttendanceManagementDto> attendanceManagementDtoList) {
-
 		AttendanceForm attendanceForm = new AttendanceForm();
 		attendanceForm.setAttendanceList(new ArrayList<DailyAttendanceForm>());
 		attendanceForm.setLmsUserId(loginUserDto.getLmsUserId());
@@ -353,8 +334,15 @@ public class StudentAttendanceService {
 		return messageUtil.getMessage(Constants.PROP_KEY_ATTENDANCE_UPDATE_NOTICE);
 	}
 
+	/**
+	 * 過去日の未入力チェック
+	 * 
+	 * @author 藤原峻也 - Task.25
+	 * @return 未入力がある場合true、ない場合false
+	 * @throws ParseException
+	 */
 	public Boolean notEnterCheck() throws ParseException {
-		// 受講生かどうかのチェック
+		//受講生かどうかのチェック
 		if (!loginUserUtil.isStudent()) {
 			return false;
 		}
