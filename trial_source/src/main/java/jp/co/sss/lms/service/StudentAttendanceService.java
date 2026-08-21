@@ -214,6 +214,24 @@ public class StudentAttendanceService {
 	public AttendanceForm setAttendanceForm(
 			List<AttendanceManagementDto> attendanceManagementDtoList) {
 		AttendanceForm attendanceForm = new AttendanceForm();
+		
+		//Task.26 藤原
+		//時間マップ
+		/*LinkedHashMap<Integer,String> hourMap = new LinkedHashMap<>();
+		hourMap.put(null, "");
+		for (int i=0;i<24;i++) {
+			hourMap.put(i,String.format("%02d",i));
+		}
+		//分マップ
+		LinkedHashMap<Integer, String> minuteMap = new LinkedHashMap<>();
+		minuteMap.put(null, "");
+		for (int i = 0; i < 60; i++) {
+		    minuteMap.put(i, String.format("%02d", i));
+		}
+		
+		attendanceForm.setHourMap(hourMap);
+		attendanceForm.setMinuteMap(minuteMap);*/
+		
 		attendanceForm.setAttendanceList(new ArrayList<DailyAttendanceForm>());
 		attendanceForm.setLmsUserId(loginUserDto.getLmsUserId());
 		attendanceForm.setUserName(loginUserDto.getUserName());
@@ -252,6 +270,16 @@ public class StudentAttendanceService {
 			dailyAttendanceForm.setStatusDispName(attendanceManagementDto.getStatusDispName());
 
 			attendanceForm.getAttendanceList().add(dailyAttendanceForm);
+			
+			//Task.26 藤原
+			//時刻を「時」「分」に分割してセット
+			/*String timeString = attendanceManagementDto.getTrainingStartTime();
+			
+			int startHour = Integer.parseInt(timeString.substring(0,2));
+			int startMinute = Integer.parseInt(timeString.substring(3,5));
+			
+			dailyAttendanceForm.setTrainingStartTimeHour(startHour);
+			dailyAttendanceForm.setTrainingStartTimeHour(startMinute);*/
 		}
 
 		return attendanceForm;

@@ -68,13 +68,13 @@ public interface TStudentAttendanceMapper {
 	/**
 	 * 過去日の未入力件数取得
 	 * 
-	 * @author 藤原峻也
+	 * @author 藤原峻也 - Task.25
 	 * @param lmsUserId
 	 * @param deleteFlg
 	 * @param currentDate
 	 * @return 未入力件数
 	 */
-	int notEnterCount(
+	Integer notEnterCount(
 			@Param("lmsUserId") Integer lmsUserId,
 			@Param("deleteFlg") Short deleteFlg,
 			@Param("trainingDate") String currentDate);
