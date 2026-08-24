@@ -1,6 +1,7 @@
 package jp.co.sss.lms.controller;
 
 import java.text.ParseException;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,12 +47,12 @@ public class AttendanceController {
 		List<AttendanceManagementDto> attendanceManagementDtoList = studentAttendanceService
 				.getAttendanceManagement(loginUserDto.getCourseId(), loginUserDto.getLmsUserId());
 		model.addAttribute("attendanceManagementDtoList", attendanceManagementDtoList);
-		
+
 		//初期表示未入力チェック
 		//藤原峻也 - Task.25
 		boolean isNotEntered = studentAttendanceService.notEnterCheck();
 		model.addAttribute("isNotEntered", isNotEntered);
-		
+
 		return "attendance/detail";
 	}
 
@@ -135,17 +136,33 @@ public class AttendanceController {
 	 * @throws ParseException
 	 */
 	@RequestMapping(path = "/update", params = "complete", method = RequestMethod.POST)
-	public String complete(AttendanceForm attendanceForm, Model model, BindingResult result)
+	public String complete(AttendanceForm attendanceForm, BindingResult result, Model model)
 			throws ParseException {
+
+		// Task.26
+		// 時・分から[hh:mm]形式への設定処理
+		studentAttendanceService.formatTimeForUpdate(attendanceForm);
+		
+		// バリデーションエラー時の処理
+		if (result.hasErrors()) {
+	        // setAttendanceForm に空リストを渡してマップを生成し、再セットする
+	        AttendanceForm dummyForm = studentAttendanceService.setAttendanceForm(new ArrayList<>());
+	        attendanceForm.setHourMap(dummyForm.getHourMap());
+	        attendanceForm.setMinuteMap(dummyForm.getMinuteMap());
+
+	        model.addAttribute("attendanceForm", attendanceForm);
+	        return "attendance/update";
+	    }
 
 		// 更新
 		String message = studentAttendanceService.update(attendanceForm);
 		model.addAttribute("message", message);
+		
 		// 一覧の再取得
 		List<AttendanceManagementDto> attendanceManagementDtoList = studentAttendanceService
 				.getAttendanceManagement(loginUserDto.getCourseId(), loginUserDto.getLmsUserId());
 		model.addAttribute("attendanceManagementDtoList", attendanceManagementDtoList);
-
+		
 		return "attendance/detail";
 	}
 
