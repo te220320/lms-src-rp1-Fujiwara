@@ -216,7 +216,7 @@ public class StudentAttendanceService {
 			List<AttendanceManagementDto> attendanceManagementDtoList) {
 		AttendanceForm attendanceForm = new AttendanceForm();
 
-		//Task.26 藤原
+		//藤原 - Task.26
 		//時間マップ
 		LinkedHashMap<Integer, String> hourMap = new LinkedHashMap<>();
 		hourMap.put(null, "");
@@ -270,7 +270,7 @@ public class StudentAttendanceService {
 					.dateToString(attendanceManagementDto.getTrainingDate(), "yyyy年M月d日(E)"));
 			dailyAttendanceForm.setStatusDispName(attendanceManagementDto.getStatusDispName());
 
-			//Task.26 藤原
+			//藤原 - Task.26
 			//時刻を「時」「分」に分割してセット
 			String timeString = attendanceManagementDto.getTrainingStartTime(); // 出勤時間 例09:15
 			if (timeString != null && timeString.length() >= 5) { //データが5文字以上あるか確認
@@ -295,6 +295,9 @@ public class StudentAttendanceService {
 	}
 
 	/**
+	 * 入力された出退勤の{時間}{分}をhh:mm形式に変換し、AttendanceFormにセットする
+	 * 
+	 * @author 藤原峻也 - Task.26
 	 * @param attendanceForm
 	 */
 	public void formatTimeForUpdate(AttendanceForm attendanceForm) {

@@ -134,6 +134,8 @@ public class AttendanceUtil {
 	
 	/**
 	 * 時間マップ取得 (00〜23)
+	 * 
+	 * @author 藤原峻也 - Task.26
 	 * @return 時間マップ
 	 */
 	public LinkedHashMap<Integer, String> getHourMap() {
@@ -146,6 +148,8 @@ public class AttendanceUtil {
 
 	/**
 	 * 分マップ取得 (00〜59)
+	 * 
+	 * @author 藤原峻也 - Task.26
 	 * @return 分マップ
 	 */
 	public LinkedHashMap<Integer, String> getMinuteMap() {
@@ -157,6 +161,9 @@ public class AttendanceUtil {
     }
 	
 	/**
+	 * 時・分マップの入力判定
+	 * 
+	 * @author 藤原峻也 - Task.26
 	 * @param hour
 	 * @param minute
 	 * @return 時・分マップ

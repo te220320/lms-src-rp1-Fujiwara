@@ -139,7 +139,7 @@ public class AttendanceController {
 	public String complete(AttendanceForm attendanceForm, BindingResult result, Model model)
 			throws ParseException {
 
-		// Task.26
+		// 藤原 - Task.26
 		// 時・分から[hh:mm]形式への設定処理
 		studentAttendanceService.formatTimeForUpdate(attendanceForm);
 		

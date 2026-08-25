@@ -47,6 +47,7 @@ public class DailyAttendanceForm {
 	/** インデックス */
 	private String index;
 	
+	//藤原 - Task.26
 	/** 出勤時間（時） */
 	private Integer trainingStartTimeHour;
 	/** 出勤時間（分） */
