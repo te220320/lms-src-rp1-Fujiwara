@@ -20,11 +20,12 @@
 	</th:block>
 
 	<div class="row">
-		<div class="bs-component col-sm-12">
-
+		<!-- 藤原峻也 - Task.29 -->
+		<div class="bs-component col-sm-12" style="max-height: 610px; overflow-y: auto;">
 			<form th:action="@{/attendance/update}" th:object="${attendanceForm}" method="post">
 				<table class="table table-hover dataTable no-footer">
-					<thead>
+					<!-- 藤原峻也 - Task.29 -->
+					<thead style="position: sticky; top: 0; background-color: #fff; z-index: 1;">
 						<tr>
 							<th class="w140">日付</th>
 							<th class="w300">コース内容</th>
@@ -60,8 +61,7 @@
 								<td class="w70">
 									<select th:name="|attendanceList[${stat.index}].trainingStartTimeHour|"
 										class="form-control">
-										<option th:each="entry : ${attendanceForm.hourMap}"
-											th:value="${entry.key}"
+										<option th:each="entry : ${attendanceForm.hourMap}" th:value="${entry.key}"
 											th:text="${entry.value}"
 											th:selected="${entry.key == dailyAttendanceForm.trainingStartTimeHour}">
 										</option>
@@ -71,8 +71,7 @@
 								<td class="w70">
 									<select th:name="|attendanceList[${stat.index}].trainingStartTimeMinute|"
 										class="form-control">
-										<option th:each="entry : ${attendanceForm.minuteMap}"
-											th:value="${entry.key}"
+										<option th:each="entry : ${attendanceForm.minuteMap}" th:value="${entry.key}"
 											th:text="${entry.value}"
 											th:selected="${entry.key == dailyAttendanceForm.trainingStartTimeMinute}">
 										</option>
@@ -83,8 +82,7 @@
 								<td class="w70">
 									<select th:name="|attendanceList[${stat.index}].trainingEndTimeHour|"
 										class="form-control">
-										<option th:each="entry : ${attendanceForm.hourMap}"
-											th:value="${entry.key}"
+										<option th:each="entry : ${attendanceForm.hourMap}" th:value="${entry.key}"
 											th:text="${entry.value}"
 											th:selected="${entry.key == dailyAttendanceForm.trainingEndTimeHour}">
 										</option>
@@ -94,8 +92,7 @@
 								<td class="w70">
 									<select th:name="|attendanceList[${stat.index}].trainingEndTimeMinute|"
 										class="form-control">
-										<option th:each="entry : ${attendanceForm.minuteMap}"
-											th:value="${entry.key}"
+										<option th:each="entry : ${attendanceForm.minuteMap}" th:value="${entry.key}"
 											th:text="${entry.value}"
 											th:selected="${entry.key == dailyAttendanceForm.trainingEndTimeMinute}">
 										</option>
@@ -118,18 +115,16 @@
 						</th:block>
 					</tbody>
 				</table>
-
-				<div class="form-group">
-					<th:block th:if="${session.loginUserDto.role == '0001'}">
-						<a th:href="@{/attendance/detail}" class="btn btn-default">戻る</a>
-					</th:block>
-					<th:block th:if="${session.loginUserDto.role != '0001'}">
-						<input type="submit" value="戻る" name="indexCompany" class="btn btn-default" />
-					</th:block>
-					<input type="submit" value="更新" name="complete" class="btn btn-info" />
-				</div>
-
 			</form>
+		</div>
+		<div class="form-group">
+			<th:block th:if="${session.loginUserDto.role == '0001'}">
+				<a th:href="@{/attendance/detail}" class="btn btn-default">戻る</a>
+			</th:block>
+			<th:block th:if="${session.loginUserDto.role != '0001'}">
+				<input type="submit" value="戻る" name="indexCompany" class="btn btn-default" />
+			</th:block>
+			<input type="submit" value="更新" name="complete" class="btn btn-info" />
 		</div>
 	</div>
 
