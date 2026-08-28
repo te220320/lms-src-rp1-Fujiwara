@@ -141,6 +141,20 @@
 			</div>
 		</form>
 	</div>
+	
+	<!-- 藤原峻也 - Task.27 更新ボタン処理 -->
+	<script>
+		$(function () {
+			// ボタンがクリックされたとき
+			$('.btn-info').on('click', function () {
+				// 確認アラート処理
+				if(!confirm("更新します。よろしいですか？"));{
+					// キャンセルボタン押下時の動作のキャンセル
+					e.preventDefault();
+				}
+			});
+		});
+	</script>
 
 	<!-- 藤原峻也 - Task.28 ボタン処理 -->
 	<script>
